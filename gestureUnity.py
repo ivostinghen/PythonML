@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import time,os
 from sklearn.neighbors import KNeighborsClassifier
+# from sklearn import svm
 # import matplotlib.pyplot as plt
 import seaborn as sb
 # %matplotlib inline
@@ -21,7 +22,8 @@ lastTimeUnity  = "";
 df = pd.read_csv(r".\gestures\gesture.csv")
 X = np.array(df.drop('target',1))
 Y = np.array(df.target)
-knn = KNeighborsClassifier(3)
+# knn = svm.SVC()
+knn = KNeighborsClassifier(7)
 knn.fit(X,Y)
 
 
