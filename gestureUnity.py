@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import time,os
+import socket
 from sklearn.neighbors import KNeighborsClassifier
 # from sklearn import tree
 # from sklearn import svm
@@ -8,11 +9,13 @@ from sklearn.neighbors import KNeighborsClassifier
 # import seaborn as sb
 # %matplotlib inline
 #
-fileUnity = r".\communication\unity.txt";
-filePython = r".\communication\python.txt";
+# fileUnity = r".\communication\unity.txt";
+# filePython = r".\communication\python.txt";
 
-
-
+ 
+host,port = "127.0.0.1" , 10000
+data = "OPEN"
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 resultadoAnterior = "";
@@ -32,52 +35,46 @@ Y = np.array(df.target)
 knn = KNeighborsClassifier(5)
 # knn = tree.DecisionTreeClassifier()
 knn.fit(X,Y)
-file = open(fileUnity)
-
-
-def predict( ):
-   file = open(fileUnity)
-
-   while True:
-    line = file.readline()
-    if not line:
-        break
-
-    line = line.rstrip('\n')
-    # print(line)
-    mylist = [float(x) for x in line.split(',')]
-
-    # print(mylist)
-    result = knn.predict([mylist])
-
-
-    return result[0]
-
-   # file.close()
 
 
 
-while(1):
-    # tempTime = time.ctime(os.stat(fileUnity).st_atime)
-    # if (lastTimeUnity != tempTime):
-    #     lastTimeUnity = tempTime
+try:
+
+    sock.connect((host,port))
+   
+    while (1):
+       
+        #recebe input
+        inputReceived = sock.recv(1024).decode("utf-8")
+        line = inputReceived
+        line = line.rstrip('\n')
+        mylist = [float(x) for x in line.split(',')]
+
+        #envia resultado
+        result = knn.predict([mylist])
+        result = result[0]
+        sock.sendall(result.encode("utf-8"))
+        
+        # if(resultado != None):
+        #     if(resultadoAnterior != resultado ):
+        #         resultadoAnterior = resultado
+        #         try:
+        #             print(resultado)
+        #             sock.sendall(data.encode("utf-8"))
+        #         except Exception:
+        #             print("Erro ao enviar")
+
+        
+        # print(result)
+        time.sleep(.02)
 
 
-    resultado = predict()
-    if(resultado != None):
-        if(resultadoAnterior != resultado ):
-            resultadoAnterior = resultado
-
-            try:
-            	print(resultado)
-            	with open(filePython, 'w') as file_python:
-	                file_python.write(resultado + '\n')
-	                file_python.close()
-            except Exception:
-	            print("Erro ao ler arquivo filePython")
 
 
-    time.sleep(.02)
+
+finally:
+    sock.close()
+
 
 
 #
