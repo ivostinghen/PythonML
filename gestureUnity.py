@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import time,os
 import socket
-from sklearn.neighbors import KNeighborsClassifier
-# from sklearn import tree
+# from sklearn.neighbors import KNeighborsClassifier
+from sklearn import tree
 # from sklearn import svm
 # import matplotlib.pyplot as plt
 # import seaborn as sb
@@ -32,8 +32,8 @@ Y = np.array(df.target)
 # knn = svm.SVC(kernel = 'linear' ,decision_function_shape = 'cvr')
 
 # knn = svm.SVC()
-knn = KNeighborsClassifier(5)
-# knn = tree.DecisionTreeClassifier()
+# knn = KNeighborsClassifier(5)
+knn = tree.DecisionTreeClassifier()
 knn.fit(X,Y)
 
 
