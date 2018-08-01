@@ -24,11 +24,13 @@ Y = np.array(df.target)
 # classifier = svm.SVC()
 # classifier = KNeighborsClassifier(5)
 # classifier = tree.DecisionTreeClassifier()
+# classifier= tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
+classifier = svm.SVC()
 
-classifier = svm.SVC(kernel='poly',degree=3)
+# classifier = svm.SVC(kernel='poly',degree=3)
 
 classifier.fit(X,Y)
-filename = 'modelUnity.sav'
+filename = 'model.sav'
 pickle.dump(classifier, open(filename, 'wb'))
 print("model saved!")
 

@@ -8,7 +8,6 @@ import socket
 import pickle
 
 host,port = "127.0.0.1" , 10000
-data = "OPEN"
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 ############# LOAD MODEL  ##############
@@ -32,22 +31,9 @@ try:
         result = classifier.predict([mylist])
         result = result[0]
         sock.sendall(result.encode("utf-8"))
-        
-        # if(resultado != None):
-        #     if(resultadoAnterior != resultado ):
-        #         resultadoAnterior = resultado
-        #         try:
-        #             print(resultado)
-        #             sock.sendall(data.encode("utf-8"))
-        #         except Exception:
-        #             print("Erro ao enviar")
-
-        
-        # print(result)
+ 
+        print(result)
         time.sleep(.02)
-
-
-
 
 
 finally:
