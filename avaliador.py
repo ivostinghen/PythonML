@@ -14,16 +14,15 @@ from numpy import *
 
 import pickle
 training_percentage = 0.3 # float entre 0 e 1
-bestResult= [0,0,0,0,0,0,0,0,0,0,0,0]
+bestResult= [0,0,0,0,0,0,0,0,0,0]
 
 
-
-n = 11
-m = 11
+n = 10
+m = 10
 confusionMatrix = [0] * n
 for i in range(n):
 	for j in range(n):
-		confusionMatrix[i] = [3.5] * m
+		confusionMatrix[i] = [0.0] * m
 
 
 winner = 0 
@@ -47,164 +46,32 @@ YT = np.array(DT.target)
 
 # Fazer treinamento de acordo com algoritmo
 
-# classifiers[1] =  svm.SVC(kernel="linear", C=0.025)
-# classifiers[2] =   svm.SVC(gamma=2, C=1)
-# classifiers[3] =   svm.SVC(kernel="poly", C=0.025)
-# classifiers[4] =svm.SVC(kernel="sigmoid", gamma=2)
 classifiers = {} 
 
-# classifiers[0] = KNeighborsClassifier(3)
-# classifiers[1] = KNeighborsClassifier(5)
-# classifiers[2] = KNeighborsClassifier(7)
-# # classifiers[3] = RandomForestClassifier(max_depth=3, random_state=0)
-# classifiers[3] = RandomForestClassifier(max_depth=5, random_state=0)
-# # classifiers[6] = RandomForestClassifier(max_depth=9, random_state=0)
-# classifiers[4] = RandomForestClassifier(max_depth=10, random_state=0)
-# classifiers[5] = RandomForestClassifier(max_depth=12, random_state=0)
-# classifiers[9] = RandomForestClassifier(max_depth=14, random_state=0)
-# classifiers[10] = RandomForestClassifier(max_depth=15, random_state=0)
+classifierNames = ["KNN(3)","KNN(5)","KNN(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","SVM(1)","SVM(2)","SVM(3)","SVM(1)","SVM(2)","SVM(3)"];
 
-
-
-
-
-
-# HERE
-classifiers[0] = tree.DecisionTreeClassifier()
-classifiers[1] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="random",min_impurity_decrease=.000116)
-# classifiers[2] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="random",min_impurity_decrease=.00012)
-# classifiers[3] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random",min_impurity_decrease=.000122)
-classifiers[2] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="best")
-# classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="best")
-# classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
-# classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
-
-
-
-# classifiers[0] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random",min_impurity_decrease=.000116)
-# classifiers[1] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random",min_impurity_decrease=.00012)
-# classifiers[2] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random",min_impurity_decrease=.000122)
-# classifiers[3] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
-
-# classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
-
-# classifiers[4] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random",min_impurity_decrease=.000116)
-# classifiers[14] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random",min_impurity_decrease=.00012)
-# classifiers[15] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random",min_impurity_decrease=.000122)
-# classifiers[16] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
-# classifiers[17] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
-# classifiers[18] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
-
-
-
-
-# classifiers[9] = svm.SVC(kernel='poly' , degree=2)
-# classifiers[10] = svm.SVC(kernel='poly' , degree=3)#default
-# classifiers[11] = svm.SVC(kernel='poly' , degree=5)
-
-
-# classifiers[1] = RandomForestClassifier(max_depth=12, random_state=1)
-# # classifiers[2] = RandomForestClassifier(max_depth=12, random_state=2)
-# # classifiers[3] = RandomForestClassifier(max_depth=12, random_state=3)
-# classifiers[4] = RandomForestClassifier(max_depth=12, random_state=4)
-# classifiers[5] = RandomForestClassifier(max_depth=12, random_state=5)
-# classifiers[11] = RandomForestClassifier(max_depth=14, random_state=0)
-# classifiers[12] = RandomForestClassifier(max_depth=14, random_state=3)
-# classifiers[12] = RandomForestClassifier(max_depth=14, random_state=5)
-
-
-# classifiers[10] = RandomForestClassifier(max_depth=2, random_state=1)
-# classifiers[11] = RandomForestClassifier(max_depth=2, random_state=2)
-
-# classifiers[10] = pickle.load(open('10.sav', 'rb'))
-# classifiers[0] = pickle.load(open('0.sav', 'rb'))
-# classifiers[1] = pickle.load(open('1.sav', 'rb'))
-# classifiers[2] = pickle.load(open('2.sav', 'rb'))
-# classifiers[3] = pickle.load(open('3.sav', 'rb'))
-# classifiers[4] = pickle.load(open('4.sav', 'rb'))
-# classifiers[5] = pickle.load(open('5.sav', 'rb'))
-# classifiers[6] = pickle.load(open('6.sav', 'rb'))
-# classifiers[7] = pickle.load(open('7.sav', 'rb'))
-# classifiers[8] = pickle.load(open('8.sav', 'rb'))
-# classifiers[9] = pickle.load(open('9.sav', 'rb'))
-# classifiers[10] = pickle.load(open('10.sav', 'rb'))
-
-# classifiers[0] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random",min_impurity_decrease=.000114)
-# classifiers[1] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="random",min_impurity_decrease=.000116)
-# classifiers[2] = tree.DecisionTreeClassifier(min_samples_split=4,splitter="random",min_impurity_decrease=.000118)
-# classifiers[3] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="random",min_impurity_decrease=.00012)
-# classifiers[4] = tree.DecisionTreeClassifier(min_samples_split=6,splitter="random",min_impurity_decrease=.000122)
-# classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random",min_impurity_decrease=.000114)
-
-# classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="best",min_impurity_decrease=.000114)
-# classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=4,splitter="best",min_impurity_decrease=.000116)
-# classifiers[8] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="best",min_impurity_decrease=.00012)
-# classifiers[9] = tree.DecisionTreeClassifier(min_samples_split=6,splitter="best",min_impurity_decrease=.000118)
-# classifiers[10] = pickle.load(open('model.sav', 'rb'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random",min_impurity_decrease=.00016)
-
-
-# classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=8,splitter="random",min_impurity_decrease=.00017)
-
-# classifiers[8] = tree.DecisionTreeClassifier(min_samples_split=10,splitter="random",min_impurity_decrease=.09)
-
-# classifiers[2] = tree.DecisionTreeClassifier(0.8)
-
-# # Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels.
-# classifiers[3] = svm.SVC(kernel="rbf")#default
-# classifiers[4] =  svm.SVC(kernel="linear")
-# classifiers[5] = svm.SVC(kernel='poly' , degree=2)
-# classifiers[6] = svm.SVC(kernel='poly' , degree=3)#default
-# classifiers[7] = svm.SVC(kernel='poly' , degree=5)
-# classifiers[0] = svm.SVC(kernel='poly' , degree=7)
-# classifiers[1] = svm.SVC(kernel='poly' , degree=9)
-# classifiers[9] = svm.SVC(kernel='poly' , degree=9, gamma=0;0)
-# classifiers[0] = svm.SVC(kernel='sigmoid')
-# classifiers[0] = svm.SVC(kernel='precomputed')
-# classifiers[4] = svm.SVC(kernel='callable')
-
-# classifiers[2] = svm.SVC(kernel='rbf')
-
-# # classifiers[2] = KNeighborsClassifier(3)
-
-# classifiers[1] = svm.LinearSVC()
-# classifiers[2] = svm.SVC(kernel='linear',gamma=30)
-# classifiers[1] = svm.SVC(kernel='poly')
-# classifiers[1] = svm.SVC(kernel='linear')
-# classifiers[2] = svm.SVC(kernel='poly')
-# classifiers[2] = tree.DecisionTreeClassifier()
-
-#Treina os classificadores
-
-classifierNames = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27"]
-# classifierNames = ["knn(3)","knn(5)","DecisionTree", "SVC_rbf","SVC_linear" , "SVC_degree_2","SVC_degree_3","SVC_degree_5","SVC_degree_7" ,"SVC_degree_9" ]
-# gestures = ["OPEN","CLOSE","THUMB","TWO","THREE","FOUR","LOVE","COOL","FIRE", "ITALIAN", "HANG_LOOSE"]
+classifiers[0] = KNeighborsClassifier(3)
+classifiers[1] = KNeighborsClassifier(5)
+classifiers[2] = KNeighborsClassifier(7)
+classifiers[3] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
+classifiers[4] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="best")
+classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="best")
+classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
+classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random")
+classifiers[8] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="random")
+classifiers[9] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="random")
+classifiers[10] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random")
+classifiers[11] = svm.SVC(degree=1)
+classifiers[12] = svm.SVC(degree=2)
+classifiers[13] = svm.SVC(degree=3)
+classifiers[14] = svm.SVC(kernel='poly' , degree=1)
+classifiers[15] = svm.SVC(kernel='poly' , degree=2)
+classifiers[16] = svm.SVC(kernel='poly' , degree=3)#default
 
 
 for c in classifiers:
 
-	# if(c!=10):
 	classifiers[c].fit(XT,YT)
-	# filename = classifierNames[c]+'.sav'
-	# pickle.dump(classifiers[c], open(filename, 'wb'))
-	# # print("model saved!")
-
-
 
 	# Pegar últimos % para testes
 	D2 = D.iloc[-f_rows:]
@@ -213,14 +80,16 @@ for c in classifiers:
 
 
 	print("\nClassifier:"+classifierNames[c] )
-	acertos = [0,0,0,0,0,0,0,0,0,0,0]
-	erros   = [0,0,0,0,0,0,0,0,0,0,0]
-	total   = [0,0,0,0,0,0,0,0,0,0,0]
+	textfile = open('RESULTADOS.txt', 'a')
+	textfile.write('\n' +classifierNames[c])
+
+	acertos = [0,0,0,0,0,0,0,0,0,0]
+	erros   = [0,0,0,0,0,0,0,0,0,0]
+	total   = [0,0,0,0,0,0,0,0,0,0]
 	temp = 0 
 
 	for i in range(0, f_rows) :
 		result = classifiers[c].predict([XF[i]]);
-		# print(YF[i])
 		if YF[i] == "OPEN":
 			temp=0
 		elif YF[i] ==  "CLOSE":
@@ -239,14 +108,8 @@ for c in classifiers:
 			temp=7
 		elif YF[i] ==  "FIRE":
 			temp=8
-		elif YF[i] ==  "ITALIAN":
-			temp=9
 		elif YF[i] ==  "HANG_LOOSE":
-			temp=10
-		# elif YF[i] ==  "SHAKA":
-		# 	temp=10
-		
-	
+			temp=9
 
 		total[temp] +=1;
 		index =0
@@ -272,31 +135,36 @@ for c in classifiers:
 			index=7
 		elif result ==  "FIRE":
 			index=8
-		elif result ==  "ITALIAN":
-			index=9
 		elif result ==  "HANG_LOOSE":
-			index=10
+			index=9
 		confusionMatrix[temp][index] += 1.0
 
 
+	
 	print("confusionMatrix")
 	print(confusionMatrix)
 	resultArray = []
-	for x in range(0,11): 
+	for x in range(0,10): 
 		result = round((100*(acertos[x]/total[x])),2)
 		resultArray.append(result) 
 
-	for u in range (0,11):
-		for v in range (0,11):
+	for u in range (0,10):
+		for v in range (0,10):
 			confusionMatrix[u][v] = round(100* (confusionMatrix[u][v]/total[v]),2)
 	
 
 	print('\n',confusionMatrix)
 
 
+	textfile = open('RESULTADOS.txt', 'a')
+	textfile.write('\n confusionMatrix')
+	textfile.write(str(confusionMatrix))
+
+
+
 	pointA=0
 	pointB=0
-	for x in range(0,11):
+	for x in range(0,10):
 		if(resultArray[x]>bestResult[x]):
 			pointA+=1
 		else:
@@ -308,17 +176,17 @@ for c in classifiers:
 
 
 
-	textfile = open('textfile.txt', 'a')
+	textfile = open('RESULTADOS.txt', 'a')
 	textfile.write('\n')
-	for z in range(0,11):
+	for z in range(0,10):
 		textfile.write(str(resultArray[z]) +'\t')
 		# sys.stdout.write(str(resultArray[z]) +'\t')
 		# print(resultArray[z],'\t', end='')
 	textfile.write('\n')
 	textfile.close()
 
-	for u in range (0,11):
-		for v in range (0,11):
+	for u in range (0,10):
+		for v in range (0,10):
 			confusionMatrix[u][v] = 0
 
-print('\n',bestResult , '\n' ,winner)
+print('\n',bestResult , '\n' ,winner, classifierNames[winner])
