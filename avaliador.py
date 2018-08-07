@@ -48,25 +48,27 @@ YT = np.array(DT.target)
 
 classifiers = {} 
 
-classifierNames = ["KNN(3)","KNN(5)","KNN(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","SVM(1)","SVM(2)","SVM(3)","SVM(1)","SVM(2)","SVM(3)"];
+# classifierNames = ["KNN(3)","KNN(5)","KNN(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","TREE(2)","TREE(3)","TREE(5)","TREE(7)","SVM(1)","SVM(2)","SVM(3)","SVM(1)","SVM(2)","SVM(3)"];
+classifierNames = ["KNN(3)","KNN(5)","SVM(3)","SVM(5)","SVM(7)","TREE(2)","TREE(3)","TREE(5)"];
 
 classifiers[0] = KNeighborsClassifier(3)
 classifiers[1] = KNeighborsClassifier(5)
-classifiers[2] = KNeighborsClassifier(7)
-classifiers[3] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
-classifiers[4] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="best")
-classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="best")
-classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
-classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random")
-classifiers[8] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="random")
-classifiers[9] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="random")
-classifiers[10] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random")
-classifiers[11] = svm.SVC(degree=1)
-classifiers[12] = svm.SVC(degree=2)
-classifiers[13] = svm.SVC(degree=3)
-classifiers[14] = svm.SVC(kernel='poly' , degree=1)
-classifiers[15] = svm.SVC(kernel='poly' , degree=2)
-classifiers[16] = svm.SVC(kernel='poly' , degree=3)#default
+# classifiers[2] = KNeighborsClassifier(7
+classifiers[2] = svm.SVC(degree=3)
+classifiers[3] = svm.SVC(degree=5)
+classifiers[4] = svm.SVC(degree=7)
+classifiers[5] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
+classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="best")
+classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="best")
+# classifiers[6] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="best")
+# classifiers[7] = tree.DecisionTreeClassifier(min_samples_split=2,splitter="random")
+# classifiers[8] = tree.DecisionTreeClassifier(min_samples_split=3,splitter="random")
+# classifiers[9] = tree.DecisionTreeClassifier(min_samples_split=5,splitter="random")
+# classifiers[10] = tree.DecisionTreeClassifier(min_samples_split=7,splitter="random")
+
+# classifiers[14] = svm.SVC(kernel='poly' , degree=1)
+# classifiers[15] = svm.SVC(kernel='poly' , degree=2)
+# classifiers[16] = svm.SVC(kernel='poly' , degree=3)#default
 
 
 for c in classifiers:

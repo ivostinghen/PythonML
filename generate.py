@@ -27,7 +27,8 @@ Y = np.array(df.target)
 # classifier= tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
 # classifier = svm.SVC()
 
-# classifier = svm.SVC(kernel='poly',degree=3)
+# classifier = svm.SVC(kernel='linear',degree=3)
+# classifier = svm.SVC(degree=3)
 classifier= tree.DecisionTreeClassifier(min_samples_split=2,splitter="best")
 classifier.fit(X,Y)
 filename = 'model.sav'

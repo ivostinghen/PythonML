@@ -32,7 +32,7 @@ try:
         result = result[0]
         sock.sendall(result.encode("utf-8"))
  
-        print(result)
+        # print(result)
         time.sleep(.02)
 
 
