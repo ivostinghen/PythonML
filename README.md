@@ -18,5 +18,5 @@
 - Connect to unity socket and send it predict gestures in real-time: 
     <h5>- File:  "run.py"
     <h5>- OBS: You must first open "Final Paper - Part I - Unity Side - LeapMotion" and hit the play button.
-     <h5> &nbsp   Link of Part I : https://github.com/ivostinghen/UnityML
+     <h6> &nbsp   Link of Part I : https://github.com/ivostinghen/UnityML
 
